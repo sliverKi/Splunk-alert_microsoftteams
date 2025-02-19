@@ -129,12 +129,14 @@ def build_workflow_noaction(facts):
 
 def build_facts_workflow(settings, actionurlkey):
     facts = []
+    include_fields=["_raw", "host", "index", "source", "sourcetype"]
     for key,value in list(settings.get('result').items()):
         if actionurlkey != None:
-            if key != actionurlkey:
+            if key != actionurlkey and key in include_fields:
                 facts.append({"title":key, "value":str(value)})
         else:
-            facts.append({"title":key, "value":str(value)})
+            if key in include_fields:
+                facts.append({"title":key, "value":str(value)})
     return facts
 
 def check_action_url(settings, actionurlkey):
