@@ -145,6 +145,8 @@ def check_action_url(settings, actionurlkey):
         if actionurlkey != None:
             if key == actionurlkey:
                 action = value
+            elif key != actionurlkey:
+                action = actionurlkey
     return action
 
 if __name__ == "__main__":
